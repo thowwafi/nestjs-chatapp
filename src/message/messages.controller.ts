@@ -8,14 +8,14 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get('viewMessages')
+  @Get('view-messages')
   async viewMessages(@Request() req): Promise<Message[]> {
     const userId = req.user.userId;
     return this.messagesService.getMessages(userId);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('sendMessage')
+  @Post('send-message')
   async sendMessage(@Request() req, @Body() messageData: { receiverId: string; content: string }): Promise<Message> {
     const senderId = req.user.userId;
     const { receiverId, content } = messageData;
