@@ -2,7 +2,6 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Profile, ProfileSchema } from '../profiles/profiles.entity';
 
 @Schema()
 export class User extends Document {

@@ -6,15 +6,12 @@ import { BullModule } from '@nestjs/bull';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User, UserSchema } from './users/users.entity';
-import { Profile, ProfileSchema } from './profiles/profiles.entity';
-import { ProfilesModule } from './profiles/profiles.module';
 import { MessagesModule } from './message/messages.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGODB_URI, {}),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    MongooseModule.forFeature([{ name: Profile.name, schema: ProfileSchema }]),
     BullModule.registerQueueAsync({
       name: 'chat-queue',
       useFactory: () => ({
@@ -32,7 +29,6 @@ import { MessagesModule } from './message/messages.module';
     MessagesModule,
     AuthModule,
     UsersModule,
-    ProfilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
