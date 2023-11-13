@@ -3,7 +3,11 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { MessagesService } from './messages.service';
 import { Message } from './messages.schema';
 import { SocketGateway } from '../socket/socket.gateway';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+@ApiBearerAuth()
+@ApiTags('Messaging')
 @Controller('api')
 export class MessagesController {
   constructor(

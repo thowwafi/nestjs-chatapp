@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User, UserSchema } from './users/users.entity';
 import { MessagesModule } from './message/messages.module';
+import { SocketModule } from './socket/socket.module'; 
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MessagesModule } from './message/messages.module';
     MessagesModule,
     AuthModule,
     UsersModule,
+    SocketModule
   ],
   controllers: [AppController],
   providers: [AppService],
