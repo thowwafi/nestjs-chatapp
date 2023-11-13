@@ -1,73 +1,226 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Chat App - NestJS, MongoDB, Docker, Socket.IO
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Welcome to the Chat App built with NestJS, MongoDB, Docker, and Socket.IO. This application provides a simple and scalable solution for real-time messaging.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## How to Start the Project
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+### 1. Clone the Repository
 
 ```bash
-$ npm install
+git clone https://github.com/your-username/chat-app.git
+cd chat-app
 ```
 
-## Running the app
+### 2. Configure Environment Variables
+
+Create a `.env` file in the root of the project and update the following variables:
+
+```env
+# MongoDB Configuration
+MONGODB_URI=mongodb://localhost:27017/nestjs_chat_app
+# RABBITMQ Configuration
+RABBITMQ_URI=amqp://rabbitmq:5672
+# JWT Secret Key
+JWT_SECRET=your_jwt_secret_key
+# Socket.IO Configuration
+SOCKET_IO_PORT=4000
+```
+
+Make sure to replace `your_jwt_secret_key` with a secure secret key for JWT.
+
+### 3. Start Docker
+
+Ensure that Docker is installed on your machine. Then, run the following command to start the project:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose up --build
 ```
 
-## Test
+This command will build and start the Docker containers, including MongoDB, Redis, and the NestJS application.
+
+If you encounter any issues or need to perform additional steps, please refer to the project documentation.
+
+## Additional Steps (if necessary)
+
+If you encounter any issues during the setup or want to perform additional steps, follow the instructions below:
+
+### Update Docker Compose Configuration
+
+If you need to modify the Docker Compose configuration, navigate to the `docker-compose.yml` file and make the necessary adjustments.
+
+### Install Dependencies
+
+If you need to install or update project dependencies, run the following command:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose run --rm app npm install
 ```
 
-## Support
+### Rebuild Docker Containers
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+If you make changes to the code or Docker configuration, rebuild the Docker containers with the following command:
 
-## Stay in touch
+```bash
+docker-compose up --build
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Troubleshooting
 
-## License
+If you encounter any issues, check the logs by running:
 
-Nest is [MIT licensed](LICENSE).
+```bash
+docker-compose logs
+```
+
+Review the error messages to identify and resolve any problems.
+
+## Application Features
+
+- User Registration and Authentication
+- Real-time Messaging with Socket.IO
+- MongoDB Database for User and Message Storage
+- JWT Token Authentication
+- Dockerized for Easy Deployment
+
+Sure, let's create a simple documentation for your endpoints using the OpenAPI (Swagger) specification. You can use tools like Swagger UI to visualize and interact with the API documentation.
+
+### OpenAPI (Swagger) Documentation:
+
+Run your NestJS application, and visit `http://localhost:3000/api` to see the Swagger UI.
+
+### Register Endpoint:
+
+- **URL:** `/api/register`
+- **Method:** `POST`
+- **Description:** Register a new user.
+- **Request Body:**
+  ```json
+  {
+    "username": "string",
+    "password": "string"
+  }
+  ```
+- **Response:**
+  - HTTP Status: `201 Created`
+  - Body:
+    ```json
+    {
+      "message": "Registration successful"
+    }
+    ```
+
+### Login Endpoint:
+
+- **URL:** `/api/login`
+- **Method:** `POST`
+- **Description:** Log in an existing user.
+- **Request Body:**
+  ```json
+  {
+    "username": "string",
+    "password": "string"
+  }
+  ```
+- **Response:**
+  - HTTP Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "access_token": "string"
+    }
+    ```
+
+### Get Profile Endpoint:
+
+- **URL:** `/api/getProfile`
+- **Method:** `GET`
+- **Description:** Retrieve the user's profile.
+- **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
+- **Response:**
+  - HTTP Status: `200 OK`
+  - Body:
+    ```json
+    {
+      "userId": "string",
+      "username": "string",
+      "displayName": "string",
+      "gender": "string",
+      "birthday": "string",
+      "horoscope": "string",
+      "zodiac": "string",
+      "heightValue": 0,
+      "heightUnit": "string",
+      "weightValue": 0,
+      "weightUnit": "string",
+      "interests": ["string"]
+    }
+    ```
+
+### Update Profile Endpoint:
+
+- **URL:** `/api/update-profile`
+- **Method:** `PATCH`
+- **Description:** Update the user's profile.
+- **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
+- **Request Body:**
+  ```json
+  {
+    "displayName": "string",
+    "gender": "string",
+    "birthday": "string",
+    "horoscope": "string",
+    "zodiac": "string",
+    "heightValue": 0,
+    "heightUnit": "string",
+    "weightValue": 0,
+    "weightUnit": "string",
+    "interests": ["string"]
+  }
+  ```
+- **Response:**
+  - HTTP Status: `200 OK`
+
+### View Messages Endpoint:
+
+- **URL:** `/api/view-messages`
+- **Method:** `GET`
+- **Description:** Retrieve the user's messages.
+- **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
+- **Response:**
+  - HTTP Status: `200 OK`
+  - Body:
+    ```json
+    [
+        {
+            "id": "1",
+            "sender": {
+            "id": "user1",
+            "username": "john_doe"
+            },
+            "content": "Hello, how are you?",
+            "timestamp": "2023-11-10T12:30:45Z"
+        },
+        {
+            "id": "2",
+            "sender": {
+            "id": "user2",
+            "username": "jane_doe"
+            },
+            "content": "I'm good, thank you!",
+            "timestamp": "2023-11-10T12:32:18Z"
+        }
+    ]
+
+
+## Send Message Endpoint:
+
+- **URL:** `/api/send-message`
+- **Method:** `POST`
+- **Description:** Send a message to another user.
+- **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`
+- **Request Body:**
+  ```json
+  {
+      "receiverId": "user2",
+      "content": "Hey, what's up?"
+  }

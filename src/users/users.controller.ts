@@ -20,7 +20,7 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('update-about')
+  @Patch('update-profile')
   async updateAbout(@Body() aboutData: Partial<User>, @Request() req): Promise<User> {
     // Get the user ID from the authenticated user
     const userId = req.user.userId; // Assuming the user ID is stored in the 'sub' (subject) claim of the JWT payload
