@@ -132,7 +132,7 @@ Run your NestJS application, and visit `http://localhost:3000/api` to see the Sw
 
 ### Get Profile Endpoint:
 
-- **URL:** `/api/getProfile`
+- **URL:** `/api/get-profile`
 - **Method:** `GET`
 - **Description:** Retrieve the user's profile.
 - **Authorization Header:** `Bearer YOUR_ACCESS_TOKEN`

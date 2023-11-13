@@ -7,12 +7,12 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiTags('User')
-@Controller('api/get-profile')
+@Controller('api')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('get-profile')
   async getProfile(@Request() req): Promise<User | null> {
     // Get the user ID from the authenticated user
     const result = await this.usersService.findOne(req.user.username);
