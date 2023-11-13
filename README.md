@@ -82,9 +82,7 @@ Review the error messages to identify and resolve any problems.
 - JWT Token Authentication
 - Dockerized for Easy Deployment
 
-Sure, let's create a simple documentation for your endpoints using the OpenAPI (Swagger) specification. You can use tools like Swagger UI to visualize and interact with the API documentation.
-
-### OpenAPI (Swagger) Documentation:
+## OpenAPI (Swagger) Documentation:
 
 Run your NestJS application, and visit `http://localhost:3000/api` to see the Swagger UI.
 
@@ -212,7 +210,7 @@ Run your NestJS application, and visit `http://localhost:3000/api` to see the Sw
     ]
 
 
-## Send Message Endpoint:
+### Send Message Endpoint:
 
 - **URL:** `/api/send-message`
 - **Method:** `POST`
