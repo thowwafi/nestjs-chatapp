@@ -2,10 +2,14 @@ import { Controller, Post, Body, Get, UseGuards, Request } from '@nestjs/common'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { MessagesService } from './messages.service';
 import { Message } from './messages.schema';
+import { SocketGateway } from '../socket/socket.gateway';
 
 @Controller('api')
 export class MessagesController {
-  constructor(private readonly messagesService: MessagesService) {}
+  constructor(
+    private readonly messagesService: MessagesService,
+    private readonly socketGateway: SocketGateway
+) {}
 
   @UseGuards(JwtAuthGuard)
   @Get('view-messages')
@@ -19,6 +23,10 @@ export class MessagesController {
   async sendMessage(@Request() req, @Body() messageData: { receiverId: string; content: string }): Promise<Message> {
     const senderId = req.user.userId;
     const { receiverId, content } = messageData;
-    return this.messagesService.createMessage(senderId, receiverId, content);
+    const newMessage = this.messagesService.createMessage(senderId, receiverId, content);
+    this.socketGateway.server.to(receiverId).emit('newMessage', newMessage);
+
+    return newMessage
+
   }
 }
